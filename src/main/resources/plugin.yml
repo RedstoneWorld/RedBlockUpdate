@@ -5,7 +5,7 @@ authors: [Phoenix616]
 description: ${project.description}
 commands:
    redblockupdate:
-      aliases: [rbu]
+      aliases: [blockupdate,rbu]
       description: Main command to manage and reload the plugin.
       usage: /<command> <x> <y> <z> [<world>]
       permission: rwm.blockupdate
