@@ -1,0 +1,22 @@
+name: RedBlockUpdate
+version: '${project.version}'
+main: de.redstoneworld.redblockupdate.RedBlockUpdate
+authors: [Phoenix616]
+description: ${project.description}
+commands:
+   redblockupdate:
+      aliases: [rbu]
+      description: Main command to manage and reload the plugin.
+      usage: /<command> <x> <y> <z> [<world>]
+      permission: rwm.blockupdate
+      permission-message: You don't have the permission <permission>
+permissions:
+   rwm.blockupdate:
+      description: Gives permission to the plugin command
+      default: op
+   rwm.blockupdate.otherworld:
+      description: Gives permission to update blocks in another world
+      default: op
+   rwm.blockupdate.loadchunk:
+      description: Gives permission to load chunks to update blocks
+      default: op
