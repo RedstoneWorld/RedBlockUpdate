@@ -81,10 +81,12 @@ public final class RedBlockUpdate extends JavaPlugin {
 
     private int handleCoordInput(int source, String arg) throws NumberFormatException {
         if (arg.startsWith("~")) {
-            return source + Integer.parseInt(arg.substring(1));
-        } else {
-            return Integer.parseInt(arg);
+            if (arg.length() > 1) {
+                return source + Integer.parseInt(arg.substring(1));
+            }
+            return source;
         }
+        return Integer.parseInt(arg);
     }
 
     private void sendMessage(CommandSender sender, String message) {
