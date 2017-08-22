@@ -2,7 +2,9 @@ package de.redstoneworld.redblockupdate;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.BlockState;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -66,7 +68,9 @@ public final class RedBlockUpdate extends JavaPlugin {
             }
         }
 
-        if (coords.getBlock().getState().update()) {
+        BlockState originalState = coords.getBlock().getState();
+        coords.getBlock().setType(Material.AIR);
+        if (originalState.update(true)) {
             sendMessage(sender, ChatColor.YELLOW + "Updated " + coords.getBlock().getType() + " block at " + coords.getWorld().getName() + "/" + coords.getBlockX() + "/" + coords.getBlockY() + "/" + coords.getBlockZ());
         } else {
             sendMessage(sender, ChatColor.RED + "Could not update " + coords.getBlock().getType() + " block at " + coords.getWorld().getName() + "/" + coords.getBlockX() + "/" + coords.getBlockY() + "/" + coords.getBlockZ());
