@@ -4,7 +4,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.Container;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -68,8 +70,12 @@ public final class RedBlockUpdate extends JavaPlugin {
             }
         }
 
-        BlockState originalState = coords.getBlock().getState();
-        coords.getBlock().setType(Material.AIR);
+        Block block = coords.getBlock();
+        BlockState originalState = block.getState();
+        if (originalState instanceof Container) {
+            ((Container) originalState).getInventory().clear();
+        }
+        block.setType(Material.AIR);
         if (originalState.update(true)) {
             sendMessage(sender, ChatColor.YELLOW + "Updated " + coords.getBlock().getType() + " block at " + coords.getWorld().getName() + "/" + coords.getBlockX() + "/" + coords.getBlockY() + "/" + coords.getBlockZ());
         } else {
